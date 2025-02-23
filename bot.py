@@ -5,7 +5,7 @@ from pyrogram import Client, types
 from database.users_chats_db import db
 from database.ia_filterdb import  Media
 from typing import Union, Optional, AsyncGenerator
-from utils import temp, __repo__, __license__, __copyright__, __version__
+from utils import temp
 from info import API_ID, API_HASH, BOT_TOKEN, LOG_CHANNEL, UPTIME, WEB_SUPPORT, LOG_MSG
 
 # Get logging configurations
@@ -43,9 +43,9 @@ class Bot(Client):
         curr = datetime.datetime.now(pytz.timezone("Asia/Kolkata"))
         date = curr.strftime('%d %B, %Y')
         tame = curr.strftime('%I:%M:%S %p')
-        logging.info(LOG_MSG.format(me.first_name, date, tame, __repo__, __version__, __license__, __copyright__))
+        logging.info(LOG_MSG.format(me.first_name, date, tame))
         
-        try: await self.send_message(LOG_CHANNEL, text=LOG_MSG.format(me.first_name, date, tame, __repo__, __version__, __license__, __copyright__), disable_web_page_preview=True)   
+        try: await self.send_message(LOG_CHANNEL, text=LOG_MSG.format(me.first_name, date, tame), disable_web_page_preview=True)   
         except Exception as e: logging.warning(f"Bot Isn't Able To Send Message To LOG_CHANNEL \n{e}")
         
         if bool(WEB_SUPPORT) is True:
